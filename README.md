@@ -44,3 +44,14 @@ You can get the username and password in vault named flusher
 /api/v1/delkey
 /api/v1/prefixdelkey
 ```
+
+## Architecture
+
+![Img With Postman example](docs/img/architecture.png)
+
+
+## Features
+
+- Basic auth from vault using field username & password
+- flusher read secret/config/flusher in your vault
+- The flusher-cli read from that too to connecting with flusher-server
