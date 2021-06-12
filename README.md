@@ -26,7 +26,7 @@ Example
 ```
 
 ```
-curl -XPOST -u username:password @data.json http://flusher-qa1.sg.cld
+curl -XPOST -u username:password @data.json http://flusher.domain.local
 ```
 
 You can get the username and password in vault named flusher
