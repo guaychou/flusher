@@ -1,14 +1,14 @@
 package server
 
 import (
-	"os"
-	"strconv"
-	"strings"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/basicauth"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/guaychou/flusher/internal/type"
 	log "github.com/sirupsen/logrus"
+	"os"
+	"strconv"
+	"strings"
 )
 
 var whitelisted = map[string]bool{

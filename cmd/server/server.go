@@ -5,22 +5,21 @@ import (
 	"os/signal"
 	"syscall"
 
+	swagger "github.com/arsmn/fiber-swagger/v2"
 	"github.com/common-nighthawk/go-figure"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/basicauth"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	_ "github.com/guaychou/flusher/docs"
 	"github.com/guaychou/flusher/internal/server"
 	"github.com/guaychou/flusher/pkg/auth"
-	_ "github.com/guaychou/flusher/docs"
 	log "github.com/sirupsen/logrus"
-	swagger "github.com/arsmn/fiber-swagger/v2"
 )
 
 type Server struct {
 	apps *fiber.App
 }
-
 
 // @title Flusher API
 // @version 1.0

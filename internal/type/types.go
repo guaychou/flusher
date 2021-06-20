@@ -1,11 +1,11 @@
 package types
 
-type ErrorResponse struct{
+type ErrorResponse struct {
 	Success bool   `json:"success"`
 	Error   string `json:"error"`
 }
 
-type HealthResponse struct{
+type HealthResponse struct {
 	Success bool   `json:"success,omitempty"`
 	Message string `json:"message,omitempty"`
 	Version string `json:"version,omitempty"`

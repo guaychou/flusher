@@ -4,7 +4,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/guaychou/flusher/internal/flusher"
 	"github.com/guaychou/flusher/internal/handler"
-
 )
 
 // SetupRoutes for fiber for flusher api

@@ -8,8 +8,6 @@ import (
 	"github.com/guaychou/flusher/internal/type"
 )
 
-
-
 // HealthHandler is function that for healthcheck this application
 // Flusher Health Handler godoc
 // @Summary Health Handler

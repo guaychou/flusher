@@ -4,9 +4,8 @@ import (
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
-	rds "github.com/guaychou/flusher/pkg/redis"
 	"github.com/guaychou/flusher/internal/type"
-
+	rds "github.com/guaychou/flusher/pkg/redis"
 )
 
 // RedisFlushHandler for redis flushall
@@ -218,9 +217,9 @@ func RedisDelkeyHandler(c *fiber.Ctx) error {
 		return err
 	}
 
-	return c.Status(200).JSON(&fiber.Map{
-		"success": true,
-		"message": "Key Deleted",
+	return c.Status(200).JSON(&types.SuccessResponse{
+		Success: true,
+		Message: "Key Deleted",
 	})
 }
 
@@ -247,8 +246,8 @@ func RedisPrefixDelkeyHandler(c *fiber.Ctx) error {
 		return (err)
 	}
 
-	return c.Status(200).JSON(&fiber.Map{
-		"success": true,
-		"message": "Total deleted key: " + strconv.Itoa(int(total_deleted_key)),
+	return c.Status(200).JSON(&types.SuccessResponse{
+		Success: true,
+		Message: "Total deleted key: " + strconv.Itoa(int(total_deleted_key)),
 	})
 }
