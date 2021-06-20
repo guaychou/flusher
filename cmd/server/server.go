@@ -12,19 +12,33 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/guaychou/flusher/internal/server"
 	"github.com/guaychou/flusher/pkg/auth"
+	_ "github.com/guaychou/flusher/docs"
 	log "github.com/sirupsen/logrus"
+	swagger "github.com/arsmn/fiber-swagger/v2"
 )
 
 type Server struct {
 	apps *fiber.App
 }
 
+
+// @title Flusher API
+// @version 1.0
+// @description This is a sample swagger for Fiber
+// @termsOfService http://swagger.io/terms/
+// @contact.name API Support
+// @contact.email fiber@swagger.io
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+// @host localhost:3000
+// @BasePath /
 func Init() *Server {
 	app := fiber.New(server.FiberConfig())
 	username, password := auth.GetAuthCredential()
 	app.Use(basicauth.New(server.BasicAuthConfig(username, password)))
 	app.Use(recover.New())
 	app.Use(logger.New(server.FiberLoggerConfig()))
+	app.Get("/docs/*", swagger.Handler)
 	api := app.Group("/api/v1")
 	server.SetupRoutes(api)
 	signalChannel := make(chan os.Signal, 1)

@@ -13,7 +13,6 @@ func GetAuthCredential() (string, string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	//secret:= &Data{}
 	data, err := client.Logical().Read("secret/config/flusher")
 	if err != nil {
 		log.Fatal(err)

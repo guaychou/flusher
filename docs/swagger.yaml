@@ -1,0 +1,214 @@
+definitions:
+  rds.Rds:
+    properties:
+      data:
+        description: Redis Type we use , either it sentinel / standalone
+        properties:
+          address:
+            type: string
+          database:
+            type: integer
+          key:
+            type: string
+          master:
+            type: string
+          password:
+            type: string
+          port:
+            type: integer
+          sentinel_password:
+            type: string
+          value:
+            type: string
+        type: object
+    type: object
+  types.ErrorResponse:
+    properties:
+      error:
+        type: string
+      success:
+        type: boolean
+    type: object
+  types.HealthResponse:
+    properties:
+      message:
+        type: string
+      success:
+        type: boolean
+      version:
+        type: string
+    type: object
+  types.SuccessResponse:
+    properties:
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+info:
+  contact: {}
+paths:
+  /api/v1/delkey:
+    post:
+      consumes:
+      - application/json
+      description: Delete handler for flusher
+      operationId: del-handler
+      parameters:
+      - description: Redis Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/rds.Rds'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+      summary: DelKey Handler
+  /api/v1/flush:
+    post:
+      consumes:
+      - application/json
+      description: Flush handler for flusher
+      operationId: prefix-del-key-handler
+      parameters:
+      - description: Redis Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/rds.Rds'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+      summary: Flush by prefix/pattern Handler
+  /api/v1/flushasync:
+    post:
+      consumes:
+      - application/json
+      description: Flush handler for flusher required redis version 4.0+
+      operationId: flush-async-handler
+      parameters:
+      - description: Redis Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/rds.Rds'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+      summary: FlushAsync Handler
+  /api/v1/flushdb:
+    post:
+      consumes:
+      - application/json
+      description: FlushDB handler for flusher
+      operationId: flush-db-handler
+      parameters:
+      - description: Redis Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/rds.Rds'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+      summary: FlushDB Handler
+  /api/v1/flushdbasync:
+    post:
+      consumes:
+      - application/json
+      description: FlushDBasync handler for flusher
+      operationId: flush-db-async-handler
+      parameters:
+      - description: Redis Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/rds.Rds'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+      summary: Flush DB async Handler
+  /api/v1/health:
+    get:
+      consumes:
+      - application/json
+      description: Health handler for flusher
+      operationId: health-handler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.HealthResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/types.ErrorResponse'
+      summary: Health Handler
+swagger: "2.0"

@@ -5,9 +5,23 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	rds "github.com/guaychou/flusher/pkg/redis"
+	"github.com/guaychou/flusher/internal/type"
+
 )
 
 // RedisFlushHandler for redis flushall
+// Flusher Flush Handler godoc
+// @Summary Flush Handler
+// @Description Flush handler for flusher
+// @ID flush-handler
+// @Accept  json
+// @Produce  json
+// @Param data body rds.Rds true "Redis Data"
+// @Success 200 {object} types.SuccessResponse
+// @Failure 401 {object} types.ErrorResponse
+// @Failure 500 {object} types.ErrorResponse
+// @Router /api/v1/flush [post]
+// @securityDefinitions.basic BasicAuth
 func RedisFlushHandler(c *fiber.Ctx) error {
 	redis := &rds.Rds{}
 	if err := c.BodyParser(redis); err != nil {
@@ -19,13 +33,26 @@ func RedisFlushHandler(c *fiber.Ctx) error {
 		return (err)
 	}
 
-	return c.Status(200).JSON(&fiber.Map{
-		"success": true,
-		"message": respond,
+	return c.Status(200).JSON(&types.SuccessResponse{
+		Success: true,
+		Message: respond,
 	})
 }
 
 // RedisFlushAsyncHandler for redis flush all async
+// RedisFlushHandler for redis flushallasync
+// Flusher FlushAsync Handler godoc
+// @Summary FlushAsync Handler
+// @Description Flush handler for flusher required redis version 4.0+
+// @ID flush-async-handler
+// @Accept  json
+// @Produce  json
+// @Param data body rds.Rds true "Redis Data"
+// @Success 200 {object} types.SuccessResponse
+// @Failure 401 {object} types.ErrorResponse
+// @Failure 500 {object} types.ErrorResponse
+// @Router /api/v1/flushasync [post]
+// @securityDefinitions.basic BasicAuth
 func RedisFlushAsyncHandler(c *fiber.Ctx) error {
 	redis := &rds.Rds{}
 	if err := c.BodyParser(redis); err != nil {
@@ -37,13 +64,25 @@ func RedisFlushAsyncHandler(c *fiber.Ctx) error {
 		return (err)
 	}
 
-	return c.Status(200).JSON(&fiber.Map{
-		"success": true,
-		"message": respond,
+	return c.Status(200).JSON(&types.SuccessResponse{
+		Success: true,
+		Message: respond,
 	})
 }
 
 // RedisFlusDBhHandler for redis flushdb
+// Flusher FlushDB Handler godoc
+// @Summary FlushDB Handler
+// @Description FlushDB handler for flusher
+// @ID flush-db-handler
+// @Accept  json
+// @Produce  json
+// @Param data body rds.Rds true "Redis Data"
+// @Success 200 {object} types.SuccessResponse
+// @Failure 401 {object} types.ErrorResponse
+// @Failure 500 {object} types.ErrorResponse
+// @Router /api/v1/flushdb [post]
+// @securityDefinitions.basic BasicAuth
 func RedisFlushDBHandler(c *fiber.Ctx) error {
 	redis := &rds.Rds{}
 	if err := c.BodyParser(redis); err != nil {
@@ -53,13 +92,25 @@ func RedisFlushDBHandler(c *fiber.Ctx) error {
 	if err != nil {
 		return (err)
 	}
-	return c.Status(200).JSON(&fiber.Map{
-		"success": true,
-		"message": respond,
+	return c.Status(200).JSON(&types.SuccessResponse{
+		Success: true,
+		Message: respond,
 	})
 }
 
 // RedisFlusDbAsynchHandler for redis flushdbAsync
+// Flusher FlushDBAsync Handler godoc
+// @Summary Flush DB async Handler
+// @Description FlushDBasync handler for flusher
+// @ID flush-db-async-handler
+// @Accept  json
+// @Produce  json
+// @Param data body rds.Rds true "Redis Data"
+// @Success 200 {object} types.SuccessResponse
+// @Failure 401 {object} types.ErrorResponse
+// @Failure 500 {object} types.ErrorResponse
+// @Router /api/v1/flushdbasync [post]
+// @securityDefinitions.basic BasicAuth
 func RedisFlushDbAsyncHandler(c *fiber.Ctx) error {
 	redis := &rds.Rds{}
 	if err := c.BodyParser(redis); err != nil {
@@ -69,9 +120,9 @@ func RedisFlushDbAsyncHandler(c *fiber.Ctx) error {
 	if err != nil {
 		return (err)
 	}
-	return c.Status(200).JSON(&fiber.Map{
-		"success": true,
-		"message": respond,
+	return c.Status(200).JSON(&types.SuccessResponse{
+		Success: true,
+		Message: respond,
 	})
 }
 
@@ -111,7 +162,6 @@ func RedisAllkeyHandler(c *fiber.Ctx) error {
 	})
 }
 
-// RedisSetkeyHandler for redis set key
 func RedisSetkeyHandler(c *fiber.Ctx) error {
 	redis := &rds.Rds{}
 	if err := c.BodyParser(redis); err != nil {
@@ -146,6 +196,18 @@ func RedisSentinelGetMaster(c *fiber.Ctx) error {
 }
 
 // RedisDelkeyHandler for redis del key
+// Flusher DelKey Handler godoc
+// @Summary DelKey Handler
+// @Description Delete handler for flusher
+// @ID del-handler
+// @Accept  json
+// @Produce  json
+// @Param data body rds.Rds true "Redis Data"
+// @Success 200 {object} types.SuccessResponse
+// @Failure 401 {object} types.ErrorResponse
+// @Failure 500 {object} types.ErrorResponse
+// @Router /api/v1/delkey [post]
+// @securityDefinitions.basic BasicAuth
 func RedisDelkeyHandler(c *fiber.Ctx) error {
 	redis := &rds.Rds{}
 	if err := c.BodyParser(redis); err != nil {
@@ -163,6 +225,18 @@ func RedisDelkeyHandler(c *fiber.Ctx) error {
 }
 
 // RedisPrefixDelkeyHandler for redis prefix del key
+// Flusher PrefixDelKey Handler godoc
+// @Summary Flush by prefix/pattern Handler
+// @Description Flush handler for flusher
+// @ID prefix-del-key-handler
+// @Accept  json
+// @Produce  json
+// @Param data body rds.Rds true "Redis Data"
+// @Success 200 {object} types.SuccessResponse
+// @Failure 401 {object} types.ErrorResponse
+// @Failure 500 {object} types.ErrorResponse
+// @Router /api/v1/flush [post]
+// @securityDefinitions.basic BasicAuth
 func RedisPrefixDelkeyHandler(c *fiber.Ctx) error {
 	redis := &rds.Rds{}
 	if err := c.BodyParser(redis); err != nil {

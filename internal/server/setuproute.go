@@ -4,9 +4,10 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/guaychou/flusher/internal/flusher"
 	"github.com/guaychou/flusher/internal/handler"
+
 )
 
-// SetupRoutes for fiber
+// SetupRoutes for fiber for flusher api
 func SetupRoutes(api fiber.Router) {
 	api.Get("/health", handler.HealthHanlder)
 	api.Post("/flush", flusher.RedisFlushHandler)
