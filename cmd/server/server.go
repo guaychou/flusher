@@ -55,7 +55,7 @@ func Init() *Server {
 
 func (server *Server) Run() {
 	port := getPort()
-	myFigure := figure.NewFigure("Flusher", "roman", true)
+	myFigure := figure.NewFigure("Flusher", "speed", true)
 	myFigure.Print()
 	log.WithFields(log.Fields{
 		"version": os.Getenv("FLUSHER_VERSION"),
