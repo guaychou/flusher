@@ -11,7 +11,7 @@ RUN wget -O /tmp/dumb-init https://github.com/Yelp/dumb-init/releases/download/v
 RUN chmod +x /tmp/dumb-init
 
 FROM bitnami/minideb:buster
-ENV TZ="Asia/Jakarta" FLUSHER_VERSION="0.7.5"
+ENV TZ="Asia/Jakarta" FLUSHER_VERSION="0.7.6"
 COPY --from=builder /app/flusher /app/flusher
 COPY --from=downloader /tmp/dumb-init /usr/bin/dumb-init
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
